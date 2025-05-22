@@ -86,7 +86,7 @@ jobs:
         uses: actions/checkout@v1
 
       - name: Initialize CodeQL
-        uses: github/codeql-action/init@v1
+        uses: github/codeql-action/init@v2
         with:
           languages: javascript
 
@@ -102,7 +102,7 @@ jobs:
         run: cd backend && npm run build
 
       - name: Perform Analysis
-        uses: github/codeql-action/analyze@v1
+        uses: github/codeql-action/analyze@v2
 
   security-audit:
     needs: [build]
@@ -113,4 +113,3 @@ jobs:
 # This will checkout if the installed packages are having any vulnerabilities
       - name: Check for security issues
         run: cd backend && npm audit --audit-level=moderate
-        
