@@ -57,6 +57,7 @@ jobs:
 
   test:
     needs: [build]
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v1
@@ -74,4 +75,3 @@ jobs:
 
       - name: Run Unit Tests
         run: cd backend && npm t
-        
