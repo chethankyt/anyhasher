@@ -113,3 +113,7 @@ jobs:
 # This will checkout if the installed packages are having any vulnerabilities
       - name: Check for security issues
         run: cd backend && npm audit --audit-level=moderate
+
+      - name: Fix Audit
+        run: cd backend && npm audit fix
+        
