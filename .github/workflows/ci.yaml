@@ -1,7 +1,7 @@
 name: Continuous Integration
 on: [push]
 jobs:
-  compile:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Cache node modules
@@ -33,4 +33,24 @@ jobs:
         with: 
           name: backend-artifact
           path: backend/build/artifact.zip
-      
+
+  lint:
+    needs: [build] #name should be same as above job because, this step will run after the build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      # add caching so using the cache
+      - name: Cache node modules 
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: node-modules-cache
+      # This will install node only if the above steps is not true or if cache is missed
+      - name: Install dependencies
+        if: steps.cache.outputs.cache-hit != 'true'
+        run: cd backend && npm i
+
+      - name: Lint the code
+        run: cd backend && npm run lint
