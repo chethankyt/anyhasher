@@ -148,7 +148,7 @@ jobs:
           aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           application_name: AnyHasher
-          environment_name: AnyHasher-new
+          environment_name: AnyHasher-env
           version_label: anyhasher-${{ github.run_number }}
           region: us-east-1
           deployment_package: backend/build/artifact.zip
