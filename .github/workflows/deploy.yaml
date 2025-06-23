@@ -95,7 +95,6 @@ jobs:
           aws-region: us-east-1
 
       - name: Destroy Infrastructure
-        id: be_infra
         run: |
           cd util/terraform/backend
           echo "instance_name=\"anyhasher-backend-${{ github.run_number }}\"" >> terraform.tfvars
@@ -123,7 +122,6 @@ jobs:
           aws-region: us-east-1
 
       - name: Destroy FrontEnd Infrastructure
-        id: fe_infra
         run: |
           cd util/terraform/frontend
           echo "bucket_name=\"anyhasher-frontend-${{ github.run_number }}\"" >> terraform.tfvars
